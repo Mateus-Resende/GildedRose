@@ -1,0 +1,10 @@
+apps/cold-prep-fe/src/types/gql-types.ts
+apps/challenges-fe/web-build
+apps/order/config-plugins/build
+node_modules
+*/**/node_modules
+web-build
+apps/active-ing-svc/test/ingredients/active-ingredients.e2e-spec.ts
+libs/eslint-plugin-sweetgreen/build
+**/graphql/types.ts
+
