@@ -6,7 +6,9 @@ export class BackstagePass extends StandardItem {
     super(item);
   }
 
-  updateQuality(): void {
+  updateState(): Item {
+    this.item.sellIn = this.item.sellIn - 1;
+
     if (this.item.sellIn < 0) {
       this.item.quality = this.item.quality - this.item.quality;
     } else {
@@ -18,5 +20,6 @@ export class BackstagePass extends StandardItem {
         this.item.quality = this.item.quality + 1;
       }
     }
+    return this.item;
   }
 }

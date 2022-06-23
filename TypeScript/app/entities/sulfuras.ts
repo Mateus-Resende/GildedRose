@@ -6,7 +6,7 @@ export class Sulfuras extends StandardItem {
     super(item);
   }
 
-  updateQuality() {
-    
+  updateState(): Item {
+    return this.item;
   }
 }
