@@ -1,0 +1,92 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "**/*"
+  ],
+  "plugins": [
+    "@nrwl/nx",
+    "jsx-a11y"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.tsx",
+        "*.js",
+        "*.jsx"
+      ],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ],
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/space-infix-ops": [
+          "error"
+        ]
+      }
+    },
+    {
+      "files": [
+        "*.ts",
+        "*.tsx"
+      ],
+      "parserOptions": {
+        "overrides": [
+          {
+            "files": [
+              "*.ts",
+              "*.tsx",
+              "*.js",
+              "*.jsx"
+            ],
+            "rules": {}
+          },
+          {
+            "files": [
+              "*.ts",
+              "*.tsx"
+            ],
+            "rules": {
+              "no-shadow": "off",
+              "@typescript-eslint/no-shadow": [
+                "error"
+              ]
+            }
+          },
+          {
+            "files": [
+              "*.js",
+              "*.jsx"
+            ],
+            "rules": {}
+          }
+        ]
+      },
+      "rules": {
+        "@typescript-eslint/no-unsafe-return": "off",
+        "comma-dangle": "off"
+      }
+    },
+    {
+      "files": [
+        "*.js",
+        "*.jsx"
+      ],
+      "extends": [
+        "plugin:@nrwl/nx/javascript"
+      ],
+      "rules": {}
+    }
+  ]
+}

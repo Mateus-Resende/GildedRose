@@ -1,11 +1,22 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "strict": true,
-    "noImplicitAny": false,
-    "sourceMap": false,
-    "baseUrl": "./",
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["ES2021", "DOM"],
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
     "paths": {
       "@/*": [
         "app/*"
