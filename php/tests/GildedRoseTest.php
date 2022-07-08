@@ -82,7 +82,7 @@ class GildedRoseTest extends TestCase
         $this->assertSame($items[0]->quality, 0);
     }
 
-    public function test_reduce_quality_of_regular_item(): void
+    public function testReduceQualityOfRegularItem(): void
     {
         $items = [new Item('regular', 2, 25)];
         $gildedRose = new GildedRose($items);
@@ -90,7 +90,7 @@ class GildedRoseTest extends TestCase
         $this->assertSame($items[0]->quality, 24);
     }
 
-    public function test_reduce_quality_of_regular_item_by_two_when_sell_in_passed(): void
+    public function testReduceQualityOfRegularItemByTwoWhenSellInPassed(): void
     {
         $items = [new Item('regular', 0, 25)];
         $gildedRose = new GildedRose($items);
@@ -98,7 +98,7 @@ class GildedRoseTest extends TestCase
         $this->assertSame($items[0]->quality, 23);
     }
 
-    public function test_does_not_have_negative_quality(): void
+    public function testDoesNotHaveNegativeQuality(): void
     {
         $items = [new Item('regular', 0, 0)];
         $gildedRose = new GildedRose($items);

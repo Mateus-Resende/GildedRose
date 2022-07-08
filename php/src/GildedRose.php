@@ -39,39 +39,39 @@ final class GildedRose
     public function updateQualityForAgedBrie(Item $item)
     {
         if ($item->quality < 50) {
-            $item->quality += 1;
+            ++$item->quality;
         }
-        $item->sell_in -= 1;
+        --$item->sell_in;
         if ($item->sell_in < 0) {
-            $item->quality += 1;
+            ++$item->quality;
         }
     }
 
     public function updateQualityForBackstagePasses(Item $item)
     {
-        $item->sell_in -= 1;
+        --$item->sell_in;
         if ($item->sell_in < 0) {
             $item->quality = 0;
         } elseif ($item->quality < 50) {
-            $item->quality += 1;
+            ++$item->quality;
             if ($item->sell_in < 6 && $item->quality < 50) {
-                $item->quality += 1;
+                ++$item->quality;
             }
             if ($item->sell_in < 11 && $item->quality < 50) {
-                $item->quality += 1;
+                ++$item->quality;
             }
         }
     }
 
     public function updateQualityForRegularItem(Item $item)
     {
-        $item->sell_in -= 1;
+        --$item->sell_in;
         if ($item->quality > 0) {
-            $item->quality -= 1;
+            --$item->quality;
         }
 
         if ($item->sell_in < 0 && $item->quality > 0) {
-            $item->quality -= 1;
+            --$item->quality;
         }
     }
 }
