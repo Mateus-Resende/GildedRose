@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GildedRose;
+namespace GildedRose\models;
 
 final class Item
 {
