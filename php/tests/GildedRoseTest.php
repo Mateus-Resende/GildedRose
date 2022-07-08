@@ -105,4 +105,28 @@ class GildedRoseTest extends TestCase
         $gildedRose->updateQuality();
         $this->assertSame($items[0]->quality, 0);
     }
+
+    public function testSellInShouldReduceForAgedBrie(): void
+    {
+        $items = [new Item('Aged Brie', 0, 0)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->sell_in, -1);
+    }
+
+    public function testSellInShouldReduceForBackstagePasses(): void
+    {
+        $items = [new Item('Aged Brie', 0, 0)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->sell_in, -1);
+    }
+
+    public function testSellInShouldReduceForRegular(): void
+    {
+        $items = [new Item('regular', 0, 0)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->sell_in, -1);
+    }
 }
