@@ -49,4 +49,60 @@ class GildedRoseTest extends TestCase
         $gildedRose->updateQuality();
         $this->assertSame($items[0]->sell_in, 1);
     }
+
+    public function testBackstagePassIncreaseQuality(): void
+    {
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 12, 25)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 26);
+    }
+
+    public function testBackstagePassIncreaseQualityBy2IfSellInIsLessThan10(): void
+    {
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 9, 25)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 27);
+    }
+
+    public function testBackstagePassIncreaseQualityBy3IfSellInIsLessThan5(): void
+    {
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 4, 25)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 28);
+    }
+
+    public function testBackstagePassQualityGoesToZeroWhenSellInPassed(): void
+    {
+        $items = [new Item('Backstage passes to a TAFKAL80ETC concert', 0, 25)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 0);
+    }
+
+    public function test_reduce_quality_of_regular_item(): void
+    {
+        $items = [new Item('regular', 2, 25)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 24);
+    }
+
+    public function test_reduce_quality_of_regular_item_by_two_when_sell_in_passed(): void
+    {
+        $items = [new Item('regular', 0, 25)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 23);
+    }
+
+    public function test_does_not_have_negative_quality(): void
+    {
+        $items = [new Item('regular', 0, 0)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        $this->assertSame($items[0]->quality, 0);
+    }
 }
