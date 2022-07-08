@@ -9,6 +9,7 @@ use GildedRose\models\AgedBrie;
 use GildedRose\models\BackstagePass;
 use GildedRose\models\Item;
 use GildedRose\models\RegularItem;
+use GildedRose\models\Sulfuras;
 
 final class GildedRose
 {
@@ -27,6 +28,7 @@ final class GildedRose
         foreach ($this->items as $item) {
             switch ($item->name) {
                 case 'Sulfuras, Hand of Ragnaros':
+                    $this->updateQualityForSulfuras($item);
                     break;
                 case 'Aged Brie':
                     $this->updateQualityForAgedBrie($item);
@@ -40,6 +42,12 @@ final class GildedRose
                     break;
             }
         }
+    }
+
+    public function updateQualityForSulfuras(Item $item)
+    {
+        $sulfuras = new Sulfuras($item);
+        $sulfuras->updateQuality();
     }
 
     public function updateQualityForAgedBrie(Item $item)
