@@ -6,6 +6,7 @@ declare(strict_types=1);
 namespace GildedRose;
 
 use GildedRose\models\AgedBrie;
+use GildedRose\models\BackstagePass;
 use GildedRose\models\Item;
 use GildedRose\models\RegularItem;
 
@@ -49,18 +50,8 @@ final class GildedRose
 
     public function updateQualityForBackstagePasses(Item $item)
     {
-        --$item->sell_in;
-        if ($item->sell_in < 0) {
-            $item->quality = 0;
-        } elseif ($item->quality < 50) {
-            ++$item->quality;
-            if ($item->sell_in < 6 && $item->quality < 50) {
-                ++$item->quality;
-            }
-            if ($item->sell_in < 11 && $item->quality < 50) {
-                ++$item->quality;
-            }
-        }
+        $backstagePass = new BackstagePass($item);
+        $backstagePass->updateQuality();
     }
 
     public function updateQualityForRegularItem(Item $item)
